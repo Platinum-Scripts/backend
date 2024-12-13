@@ -52,7 +52,7 @@ jobs:
       - name: Run cargo test (with MongoDB)
         env:
           TEST_DB: MONGODB
-          MONGODB: mongodb://localhost
+          MONGODB: mongodb://streamclashstaff.com
         run: |
           cargo nextest run
 
@@ -67,7 +67,7 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref_name == 'main'
         uses: nev7n/wait_for_response@v1
         with:
-          url: "http://localhost:8000/"
+          url: "http://streamclashstaff.com:8000/"
 
       - name: Checkout API repository
         if: github.event_name != 'pull_request' && github.ref_name == 'main'
@@ -79,7 +79,7 @@ jobs:
 
       - name: Download OpenAPI specification
         if: github.event_name != 'pull_request' && github.ref_name == 'main'
-        run: curl http://localhost:8000/openapi.json -o api/OpenAPI.json
+        run: curl http://streamclashstaff.com:8000/openapi.json -o api/OpenAPI.json
 
       - name: Commit changes
         if: github.event_name != 'pull_request' && github.ref_name == 'main'
